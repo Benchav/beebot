@@ -25,7 +25,7 @@ export function AudioOverlay(props: {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") void onEnableAudio();
       }}
-      aria-label="Activar sonidos"
+      aria-label="Enable sounds"
     >
       <motion.div
         initial={{ scale: 0.8, opacity: 0, y: 20 }}
@@ -36,12 +36,15 @@ export function AudioOverlay(props: {
         <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center">
           <BeeBotSvg className="h-full w-full drop-shadow-md" />
         </div>
-        <h2 className="text-2xl font-black text-amber-950">¡Hola! Soy Bee-Bot</h2>
+        <h2 className="text-2xl font-black text-amber-950">Hello! I'm Bee-Bot</h2>
         <p className="mt-2 text-base font-medium text-amber-900/80">
-          Toca la pantalla para comenzar a jugar y activar mis sonidos.
+          Tap the screen to start playing and enable my sounds.
+        </p>
+        <p className="mt-2 text-sm font-bold text-amber-800">
+          I'm ready for Elimar Roa's classes 📚
         </p>
         <p className="mt-6 text-xs text-amber-900/60">
-          Consejo: Instala la app para jugar sin internet.
+          Tip: Install the app to play offline.
         </p>
       </motion.div>
     </motion.div>

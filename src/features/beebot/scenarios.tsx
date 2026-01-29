@@ -18,10 +18,10 @@ const pseudo = (i: number) => {
 };
 
 export const scenarioLabel: Record<ScenarioId, string> = {
-  letters: "Alfabeto",
-  treasure: "Isla del Tesoro",
-  track: "Pista de Carreras",
-  space: "Espacio",
+  letters: "Alphabet",
+  treasure: "Treasure Island",
+  track: "Race Track",
+  space: "Space",
 };
 
 export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
@@ -36,7 +36,7 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
         ? "bg-board-letters-a text-board-letters-fg beebot-inner-shadow"
         : "bg-board-letters-b text-board-letters-fg beebot-inner-shadow",
       content: <span className="text-xl font-black tracking-tight">{char}</span>,
-      ariaLabel: `Letra ${char}`,
+      ariaLabel: `Letter ${char}`,
     };
   }
 
@@ -49,7 +49,7 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
       content: has ? (
         <span className={icon === "🪐" ? "text-2xl drop-shadow-sm" : "text-xl opacity-80"}>{icon}</span>
       ) : undefined,
-      ariaLabel: has ? "Objeto espacial" : "Espacio vacío",
+      ariaLabel: has ? "Space object" : "Empty space",
     };
   }
 
@@ -61,27 +61,27 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
     // Make the island feel connected: only round the outer corners of the 4x4 sand block.
     const sandCornerRadius = isSand
       ? cn(
-          x === 1 && y === 1 && "rounded-tl-xl",
-          x === 4 && y === 1 && "rounded-tr-xl",
-          x === 1 && y === 4 && "rounded-bl-xl",
-          x === 4 && y === 4 && "rounded-br-xl",
-        )
+        x === 1 && y === 1 && "rounded-tl-xl",
+        x === 4 && y === 1 && "rounded-tr-xl",
+        x === 1 && y === 4 && "rounded-bl-xl",
+        x === 4 && y === 4 && "rounded-br-xl",
+      )
       : "";
 
     return {
       className: isSand
         ? cn(
-            "bg-board-treasure-sand text-board-treasure-sand-fg",
-            "shadow-[inset_0_1px_0_hsl(var(--space-star)/0.18)]",
-            sandCornerRadius,
-          )
+          "bg-board-treasure-sand text-board-treasure-sand-fg",
+          "shadow-[inset_0_1px_0_hsl(var(--space-star)/0.18)]",
+          sandCornerRadius,
+        )
         : "bg-transparent text-board-space-star",
       content: isTreasure ? (
         <span className="text-3xl drop-shadow-sm">💎</span>
       ) : isPalm && isSand ? (
         <span className="text-2xl">🌴</span>
       ) : undefined,
-      ariaLabel: isTreasure ? "Tesoro" : isPalm ? "Palmera" : isSand ? "Arena" : "Agua",
+      ariaLabel: isTreasure ? "Treasure" : isPalm ? "Palm tree" : isSand ? "Sand" : "Water",
     };
   }
 
@@ -100,17 +100,17 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
   return {
     className: isRoad
       ? cn(
-          "bg-track-asphalt text-board-track-road-fg",
-          "border border-board-track-road-fg/15",
-          "beebot-inner-shadow",
-          isFinish && "bg-track-finish",
-        )
+        "bg-track-asphalt text-board-track-road-fg",
+        "border border-board-track-road-fg/15",
+        "beebot-inner-shadow",
+        isFinish && "bg-track-finish",
+      )
       : cn("bg-track-grass-texture border-0"),
     content: isFinish ? (
       <span className="text-lg drop-shadow-sm">🏁</span>
     ) : hasLaneMark ? (
       <span className="track-lane-mark" aria-hidden="true" />
     ) : undefined,
-    ariaLabel: isFinish ? "Meta" : isRoad ? "Asfalto" : "Césped",
+    ariaLabel: isFinish ? "Finish line" : isRoad ? "Asphalt" : "Grass",
   };
 };

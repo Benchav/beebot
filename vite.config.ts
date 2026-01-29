@@ -17,11 +17,11 @@ export default defineConfig(({ mode }) => ({
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
-      includeAssets: ["favicon.ico", "robots.txt", "pwa-512.png", "pwa-192.png"],
+      includeAssets: ["robots.txt", "pwa-512.png", "pwa-192.png"],
       manifest: {
         name: "Bee‑Bot PWA",
         short_name: "Bee‑Bot",
-        description: "Simulador Bee‑Bot instalable con funcionamiento offline.",
+        description: "Installable Bee-Bot simulator with offline support.",
         start_url: "/",
         scope: "/",
         display: "standalone",

@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 import type { Command } from "@/features/beebot/types";
 
 const cmdMeta: Record<Command, { label: string; Icon: React.ComponentType<{ className?: string }> }> = {
-  left: { label: "Girar izquierda", Icon: RotateCcw },
-  forward: { label: "Avanzar", Icon: ArrowUp },
-  right: { label: "Girar derecha", Icon: Redo2 },
-  pause: { label: "Pausa", Icon: Pause },
-  backward: { label: "Retroceder", Icon: ArrowDown },
+  left: { label: "Turn Left", Icon: RotateCcw },
+  forward: { label: "Forward", Icon: ArrowUp },
+  right: { label: "Turn Right", Icon: Redo2 },
+  pause: { label: "Pause", Icon: Pause },
+  backward: { label: "Backward", Icon: ArrowDown },
 };
 
 export function BeeControls(props: {
@@ -26,7 +26,7 @@ export function BeeControls(props: {
       <div className="mx-auto max-w-3xl">
         <div className="border-b px-4 py-2">
           <div className="mb-1 flex items-end justify-between">
-            <span className="text-[10px] font-black tracking-widest text-muted-foreground">MEMORIA</span>
+            <span className="text-[10px] font-black tracking-widest text-muted-foreground">MEMORY</span>
             <div className="flex items-center gap-2">
               <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-black text-muted-foreground">
                 {props.queue.length}
@@ -37,7 +37,7 @@ export function BeeControls(props: {
                 className="h-5 w-5 rounded-full text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                 onClick={props.onClearQueue}
                 disabled={props.isRunning || props.queue.length === 0}
-                title="Borrar memoria (mantener posición)"
+                title="Clear memory (keep position)"
               >
                 <Trash2 className="h-3 w-3" />
               </Button>
@@ -45,7 +45,7 @@ export function BeeControls(props: {
           </div>
           <div className="flex h-9 items-center gap-1 overflow-x-auto">
             {props.queue.length === 0 ? (
-              <span className="w-full text-center text-xs italic text-muted-foreground/60">Pulsa los botones…</span>
+              <span className="w-full text-center text-xs italic text-muted-foreground/60">Press buttons...</span>
             ) : (
               props.queue.map((cmd, i) => {
                 const Icon = cmdMeta[cmd].Icon;
@@ -82,7 +82,7 @@ export function BeeControls(props: {
             size="game"
             onClick={() => props.onAdd("left")}
             disabled={props.isRunning}
-            aria-label="Añadir giro izquierda"
+            aria-label="Add turn left"
           >
             <RotateCcw />
           </Button>
@@ -91,7 +91,7 @@ export function BeeControls(props: {
             size="game"
             onClick={() => props.onAdd("forward")}
             disabled={props.isRunning}
-            aria-label="Añadir avanzar"
+            aria-label="Add forward"
           >
             <ArrowUp />
           </Button>
@@ -100,7 +100,7 @@ export function BeeControls(props: {
             size="game"
             onClick={() => props.onAdd("right")}
             disabled={props.isRunning}
-            aria-label="Añadir giro derecha"
+            aria-label="Add turn right"
           >
             <Redo2 />
           </Button>
@@ -110,7 +110,7 @@ export function BeeControls(props: {
             size="game"
             onClick={() => props.onAdd("pause")}
             disabled={props.isRunning}
-            aria-label="Añadir pausa"
+            aria-label="Add pause"
           >
             <Pause />
           </Button>
@@ -119,7 +119,7 @@ export function BeeControls(props: {
             size="game"
             onClick={() => props.onAdd("backward")}
             disabled={props.isRunning}
-            aria-label="Añadir retroceder"
+            aria-label="Add backward"
           >
             <ArrowDown />
           </Button>
@@ -128,7 +128,7 @@ export function BeeControls(props: {
             size="game"
             onClick={props.onClear}
             disabled={props.isRunning}
-            aria-label="Borrar memoria"
+            aria-label="Clear memory"
           >
             <X />
           </Button>

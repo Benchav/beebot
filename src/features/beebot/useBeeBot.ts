@@ -25,7 +25,7 @@ export function useBeeBot() {
   const [queue, setQueue] = React.useState<Command[]>([]);
   const [isRunning, setIsRunning] = React.useState(false);
   const [activeIdx, setActiveIdx] = React.useState<number | null>(null);
-  const [status, setStatus] = React.useState<string>("Listo");
+  const [status, setStatus] = React.useState<string>("Ready");
   const [bumpTick, setBumpTick] = React.useState(0);
 
   const msg = React.useCallback((text: string) => {
@@ -57,7 +57,7 @@ export function useBeeBot() {
     setQueue([]);
     setActiveIdx(null);
     resetBee();
-    msg("Memoria borrada");
+    msg("Memory cleared");
   }, [isRunning, msg, resetBee]);
 
   const clearQueue = React.useCallback(() => {
@@ -65,7 +65,7 @@ export function useBeeBot() {
     audioRef.current.play("click");
     setQueue([]);
     setActiveIdx(null);
-    msg("Memoria eliminada");
+    msg("Memory cleared");
   }, [isRunning, msg]);
 
   const setScenarioSafe = React.useCallback(
@@ -73,7 +73,7 @@ export function useBeeBot() {
       setScenario(next);
       if (!isRunning) {
         resetBee();
-        msg("Mapa actualizado");
+        msg("Map updated");
       }
     },
     [isRunning, msg, resetBee],
@@ -123,7 +123,7 @@ export function useBeeBot() {
     if (isRunning) return;
     if (queue.length === 0) return;
     setIsRunning(true);
-    msg("Ejecutando...");
+    msg("Running...");
 
     for (let i = 0; i < queue.length; i++) {
       setActiveIdx(i);
@@ -135,7 +135,7 @@ export function useBeeBot() {
 
     setActiveIdx(null);
     setIsRunning(false);
-    msg("¡Terminado!");
+    msg("Done!");
   }, [execute, isRunning, msg, queue]);
 
   return {

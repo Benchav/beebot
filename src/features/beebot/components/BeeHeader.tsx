@@ -26,12 +26,12 @@ export function BeeHeader(props: {
           </div>
           <div className="leading-tight">
             <h1 className="text-base font-black tracking-tight">Bee‑Bot</h1>
-            <p className="text-xs text-muted-foreground">Aprende jugando en tablero 6x6 y su memoria de comandos</p>
+            <p className="text-xs text-muted-foreground">Pay attention, play and learn with Professor Elimar Roa</p>
           </div>
         </div>
 
         <label className="flex items-center gap-2">
-          <span className="sr-only">Selecciona escenario</span>
+          <span className="sr-only">Select scenario</span>
           <select
             value={props.scenario}
             onChange={(e) => props.onScenarioChange(e.target.value as ScenarioId)}
