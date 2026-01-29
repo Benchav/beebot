@@ -26,7 +26,7 @@ export function BeeHeader(props: {
           </div>
           <div className="leading-tight">
             <h1 className="text-base font-black tracking-tight">Bee‑Bot</h1>
-            <p className="text-xs text-muted-foreground">Pay attention, play and learn with Professor Elimar Roa</p>
+            <p className="text-xs text-muted-foreground">Pay attention, play and learn with teacher Elimar Roa</p>
           </div>
         </div>
 
