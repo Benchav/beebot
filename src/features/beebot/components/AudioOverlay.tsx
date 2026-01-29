@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { BeeBotSvg } from "@/features/beebot/BeeBotSvg";
 
 export function AudioOverlay(props: {
   open: boolean;
@@ -13,7 +14,10 @@ export function AudioOverlay(props: {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 grid place-items-center bg-foreground/55 p-4 backdrop-blur-sm"
       onClick={onEnableAudio}
       role="button"
@@ -23,16 +27,23 @@ export function AudioOverlay(props: {
       }}
       aria-label="Activar sonidos"
     >
-      <div className="w-full max-w-xs rounded-2xl border bg-background p-6 text-center shadow-2xl">
-        <div className="mx-auto mb-3 grid h-16 w-16 place-items-center rounded-2xl bg-accent">
-          <Sparkles className="h-7 w-7 text-foreground" />
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        className="w-full max-w-xs rounded-3xl border-4 border-yellow-400 bg-yellow-50 p-8 text-center shadow-2xl"
+      >
+        <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center">
+          <BeeBotSvg className="h-full w-full drop-shadow-md" />
         </div>
-        <h2 className="text-lg font-black">¡Empezar!</h2>
-        <p className="mt-1 text-sm text-muted-foreground">Toca la pantalla para activar los sonidos (Web Audio).</p>
-        <p className="mt-3 text-xs text-muted-foreground">
-          Consejo: instala la app desde el menú del navegador para usarla offline.
+        <h2 className="text-2xl font-black text-amber-950">¡Hola! Soy Bee-Bot</h2>
+        <p className="mt-2 text-base font-medium text-amber-900/80">
+          Toca la pantalla para comenzar a jugar y activar mis sonidos.
         </p>
-      </div>
-    </div>
+        <p className="mt-6 text-xs text-amber-900/60">
+          Consejo: Instala la app para jugar sin internet.
+        </p>
+      </motion.div>
+    </motion.div>
   );
 }
