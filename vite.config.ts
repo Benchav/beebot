@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => ({
       manifest: {
         name: "Bee‑Bot PWA",
         short_name: "Bee‑Bot",
-        description: "Installable Bee-Bot simulator with offline support.",
+        description: "Learn by playing with Bee-Bot and Professor Elimar",
         start_url: "/",
         scope: "/",
         display: "standalone",
