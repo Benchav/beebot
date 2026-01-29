@@ -43,7 +43,7 @@ export function BeeControls(props: {
               </Button>
             </div>
           </div>
-          <div className="flex h-9 items-center gap-1 overflow-x-auto">
+          <div className="flex h-9 w-full max-w-[calc(100vw-2rem)] items-center gap-1 overflow-x-auto md:max-w-none">
             {props.queue.length === 0 ? (
               <span className="w-full text-center text-xs italic text-muted-foreground/60">Press buttons...</span>
             ) : (
