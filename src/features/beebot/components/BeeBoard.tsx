@@ -62,18 +62,21 @@ export function BeeBoard(props: {
           {/* Bee: grid-positioned + layout animation */}
           <motion.div
             layout
-            className="pointer-events-none z-20 flex items-center justify-center"
-            style={{ gridColumnStart: props.bee.x + 1, gridRowStart: props.bee.y + 1 }}
+            className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center p-0"
+            style={{
+              gridColumn: `${props.bee.x + 1} / span 1`,
+              gridRow: `${props.bee.y + 1} / span 1`
+            }}
             transition={
               reduceMotion
                 ? { layout: { duration: 0 } }
                 : {
-                    layout: {
-                      type: "tween",
-                      duration: 0.5,
-                      ease: "easeInOut",
-                    },
-                  }
+                  layout: {
+                    type: "tween",
+                    duration: 0.5,
+                    ease: "easeInOut",
+                  },
+                }
             }
           >
             <motion.div
@@ -83,8 +86,8 @@ export function BeeBoard(props: {
                 reduceMotion || props.bumpTick === 0
                   ? undefined
                   : {
-                      x: [-5, 5, -5, 5, 0],
-                    }
+                    x: [-5, 5, -5, 5, 0],
+                  }
               }
               transition={reduceMotion ? undefined : { duration: 0.26, ease: "easeOut" }}
             >
