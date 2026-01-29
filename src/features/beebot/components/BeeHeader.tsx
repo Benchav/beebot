@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Sparkles } from "lucide-react";
+import { BeeBotSvg } from "@/features/beebot/BeeBotSvg";
 import type { ScenarioId } from "@/features/beebot/types";
 import { scenarioLabel } from "@/features/beebot/scenarios";
 
@@ -21,12 +21,12 @@ export function BeeHeader(props: {
     <header className="sticky top-0 z-30 h-14 border-b bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-full max-w-3xl items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-xl bg-accent">
-            <Sparkles className="h-5 w-5 text-foreground" aria-hidden="true" />
+          <div className="grid h-9 w-9 place-items-center rounded-xl bg-accent p-1">
+            <BeeBotSvg className="h-full w-full drop-shadow-sm" aria-hidden="true" />
           </div>
           <div className="leading-tight">
             <h1 className="text-base font-black tracking-tight">Bee‑Bot</h1>
-            <p className="text-xs text-muted-foreground">PWA offline · 6×6 · memoria de comandos</p>
+            <p className="text-xs text-muted-foreground">Aprende jugando en tablero 6x6 y su memoria de comandos</p>
           </div>
         </div>
 
