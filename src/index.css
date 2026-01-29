@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap");
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Playful classroom palette */
+    --background: 46 100% 95%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 218 92% 56%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 46 100% 90%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 46 35% 92%;
+    --muted-foreground: 222 15% 35%;
+
+    --accent: 36 96% 89%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 18% 86%;
+    --input: 222 18% 86%;
+    --ring: 218 92% 56%;
+
+    --radius: 0.5rem;
+
+    /* Bee‑Bot command button colors */
+    --cmd-move: 45 93% 52%;
+    --cmd-move-foreground: 32 92% 12%;
+    --cmd-turn: 24 94% 54%;
+    --cmd-turn-foreground: 210 40% 98%;
+    --cmd-util: 218 92% 56%;
+    --cmd-util-foreground: 210 40% 98%;
+    --cmd-danger: 0 84% 60%;
+    --cmd-danger-foreground: 210 40% 98%;
+    --cmd-go: 142 72% 40%;
+    --cmd-go-foreground: 210 40% 98%;
+
+    /* Bee‑Bot board themes (HSL) */
+    --letters-a: 48 100% 91%;
+    --letters-b: 42 100% 87%;
+    --letters-fg: 28 85% 32%;
+
+    --space-bg: 222 62% 8%;
+    --space-cell: 222 52% 10%;
+    --space-star: 210 40% 96%;
+    --space-planet-a: 260 78% 62%;
+    --space-planet-b: 200 92% 64%;
+
+    --treasure-water-1: 204 92% 55%;
+    --treasure-water-2: 198 94% 45%;
+    --treasure-sand: 44 100% 80%;
+    --treasure-sand-fg: 28 75% 22%;
+
+    --track-grass: 142 60% 70%;
+    --track-road: 220 16% 22%;
+    --track-road-fg: 210 40% 98%;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: Fredoka, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+      "Segoe UI Emoji";
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+}
+
+@layer utilities {
+  .beebot-inner-shadow {
+    box-shadow: inset 0 1px 2px hsl(var(--foreground) / 0.12);
+  }
+
+  /* Track: asphalt + grass textures (scenario: track) */
+  .bg-track-asphalt {
+    background-color: hsl(var(--track-road));
+    background-image:
+      linear-gradient(180deg, hsl(var(--space-star) / 0.06), transparent 45%),
+      repeating-linear-gradient(90deg, hsl(var(--space-star) / 0.0) 0px, hsl(var(--space-star) / 0.0) 10px, hsl(var(--space-star) / 0.05) 11px);
+  }
+
+  .bg-track-grass-texture {
+    background-color: hsl(var(--track-grass));
+    background-image:
+      linear-gradient(180deg, hsl(var(--foreground) / 0.05), transparent 55%),
+      repeating-linear-gradient(135deg, hsl(var(--foreground) / 0.03) 0px, hsl(var(--foreground) / 0.03) 6px, transparent 6px, transparent 12px);
+  }
+
+  .bg-track-finish {
+    background-image:
+      linear-gradient(180deg, hsl(var(--space-star) / 0.10), transparent 45%),
+      repeating-conic-gradient(
+        from 45deg,
+        hsl(var(--space-star) / 0.75) 0 25%,
+        hsl(var(--space-star) / 0.10) 0 50%
+      );
+    background-size: auto, 18px 18px;
+    background-blend-mode: overlay;
+  }
+
+  .track-lane-mark {
+    display: block;
+    width: 62%;
+    height: 10%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, hsl(var(--space-star) / 0.0) 0%, hsl(var(--space-star) / 0.65) 35%, hsl(var(--space-star) / 0.65) 65%, hsl(var(--space-star) / 0.0) 100%);
+    filter: drop-shadow(0 2px 2px hsl(var(--foreground) / 0.18));
+  }
+
+  .bg-space-stars {
+    background-color: hsl(var(--space-bg));
+    background-image:
+      radial-gradient(circle at 50% 30%, hsl(var(--space-planet-b) / 0.16), transparent 55%),
+      radial-gradient(circle at 75% 70%, hsl(var(--space-planet-a) / 0.10), transparent 60%),
+      radial-gradient(circle at 12% 18%, hsl(var(--space-star) / 0.8) 0 1px, transparent 2px),
+      radial-gradient(circle at 72% 28%, hsl(var(--space-star) / 0.55) 0 2px, transparent 4px),
+      radial-gradient(circle at 22% 72%, hsl(var(--space-star) / 0.6) 0 1px, transparent 2px),
+      radial-gradient(circle at 86% 78%, hsl(var(--space-star) / 0.7) 0 2px, transparent 4px),
+      radial-gradient(circle at 46% 46%, hsl(var(--space-star) / 0.4) 0 1px, transparent 2px);
+    background-size: 160px 160px;
+    animation: beebot-twinkle 3.6s ease-in-out infinite;
+  }
+
+  .bg-water-texture {
+    background-image:
+      linear-gradient(135deg, hsl(var(--treasure-water-1)) 0%, hsl(var(--treasure-water-2)) 100%),
+      repeating-linear-gradient(
+        0deg,
+        hsl(var(--space-star) / 0.0) 0px,
+        hsl(var(--space-star) / 0.0) 10px,
+        hsl(var(--space-star) / 0.06) 12px
+      );
+    background-blend-mode: overlay;
+  }
+}
+
+@keyframes beebot-twinkle {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.15);
+  }
+}
