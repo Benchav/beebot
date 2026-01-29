@@ -60,6 +60,14 @@ export function useBeeBot() {
     msg("Memoria borrada");
   }, [isRunning, msg, resetBee]);
 
+  const clearQueue = React.useCallback(() => {
+    if (isRunning) return;
+    audioRef.current.play("click");
+    setQueue([]);
+    setActiveIdx(null);
+    msg("Memoria eliminada");
+  }, [isRunning, msg]);
+
   const setScenarioSafe = React.useCallback(
     (next: ScenarioId) => {
       setScenario(next);
@@ -143,6 +151,7 @@ export function useBeeBot() {
     enableAudio,
     addCmd,
     clear,
+    clearQueue,
     resetBee,
     run,
   };

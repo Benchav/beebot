@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ArrowDown, ArrowUp, Pause, Redo2, RotateCcw, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, Pause, Redo2, RotateCcw, Trash2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Command } from "@/features/beebot/types";
@@ -18,6 +18,7 @@ export function BeeControls(props: {
   isRunning: boolean;
   onAdd: (cmd: Command) => void;
   onClear: () => void;
+  onClearQueue: () => void;
   onRun: () => void;
 }) {
   return (
@@ -26,9 +27,21 @@ export function BeeControls(props: {
         <div className="border-b px-4 py-2">
           <div className="mb-1 flex items-end justify-between">
             <span className="text-[10px] font-black tracking-widest text-muted-foreground">MEMORIA</span>
-            <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-black text-muted-foreground">
-              {props.queue.length}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-black text-muted-foreground">
+                {props.queue.length}
+              </span>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-5 w-5 rounded-full text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                onClick={props.onClearQueue}
+                disabled={props.isRunning || props.queue.length === 0}
+                title="Borrar memoria (mantener posición)"
+              >
+                <Trash2 className="h-3 w-3" />
+              </Button>
+            </div>
           </div>
           <div className="flex h-9 items-center gap-1 overflow-x-auto">
             {props.queue.length === 0 ? (
@@ -117,7 +130,7 @@ export function BeeControls(props: {
             disabled={props.isRunning}
             aria-label="Borrar memoria"
           >
-            <Trash2 />
+            <X />
           </Button>
 
           <Button

@@ -20,6 +20,7 @@ const Index = () => {
     enableAudio,
     addCmd,
     clear,
+    clearQueue,
     run,
   } = useBeeBot();
   const [overlayOpen, setOverlayOpen] = React.useState(true);
@@ -49,6 +50,7 @@ const Index = () => {
             isRunning={isRunning}
             onAdd={addCmd}
             onClear={clear}
+            onClearQueue={clearQueue}
             onRun={run}
           />
         </div>
