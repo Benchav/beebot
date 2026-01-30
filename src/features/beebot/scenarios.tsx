@@ -52,12 +52,12 @@ const verbToBeGrid = [
   { text: "Car", sub: "Noun", color: "bg-green-200", icon: "🚗" },
 
   // Fila 5 (Extras para rellenar 6x6)
-  { text: "Start", sub: "", color: "bg-white", icon: "🏁" },
+  { text: "A", sub: "Art", color: "bg-orange-200", icon: "" },
   { text: "AM", sub: "?", color: "bg-purple-200", icon: "❓" },
   { text: "IS", sub: "?", color: "bg-yellow-200", icon: "❓" },
   { text: "ARE", sub: "?", color: "bg-green-200", icon: "❓" },
   { text: "Not", sub: "Neg", color: "bg-red-200", icon: "❌" },
-  { text: "Yes", sub: "Aff", color: "bg-blue-200", icon: "✅" },
+  { text: "AN", sub: "Art", color: "bg-orange-200", icon: "" },
 
   // Fila 6
   { text: "My", sub: "Poss", color: "bg-green-200", icon: "🙋" },
