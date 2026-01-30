@@ -43,7 +43,7 @@ export function BeeBoard(props: {
         <div
           className={cn(
             "relative grid h-full w-full grid-cols-6 grid-rows-6",
-            props.scenario === "verbtobe" ? "gap-1 p-2" : "gap-0 p-2",
+            props.scenario === "verbtobe" ? "gap-0.5 p-1 sm:gap-1 sm:p-2" : "gap-0 p-2",
           )}
         >
           {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, i) => {

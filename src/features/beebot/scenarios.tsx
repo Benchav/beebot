@@ -150,12 +150,12 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
       content: (
         <>
           <div className="absolute -top-1 w-4 h-2 bg-white/20 rounded-full"></div>
-          <span className="text-2xl mb-1 filter drop-shadow-sm">{cell.icon}</span>
-          <span className="font-fredoka font-black text-slate-700 text-[10px] sm:text-xs uppercase tracking-wide leading-none">
+          <span className="text-base sm:text-xl md:text-2xl mb-0 sm:mb-1 filter drop-shadow-sm">{cell.icon}</span>
+          <span className="font-fredoka font-black text-slate-700 text-[8px] sm:text-[10px] md:text-xs uppercase tracking-wide leading-none">
             {cell.text}
           </span>
           {cell.sub && (
-            <span className="font-fredoka text-[8px] text-slate-500 font-semibold">
+            <span className="font-fredoka text-[6px] sm:text-[8px] text-slate-500 font-semibold">
               {cell.sub}
             </span>
           )}
