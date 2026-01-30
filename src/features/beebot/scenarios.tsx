@@ -17,55 +17,31 @@ const pseudo = (i: number) => {
   return seed - Math.floor(seed);
 };
 
-// Definición del mapa "Verb To Be"
-const verbToBeGrid = [
-  // Fila 1
-  { text: "I", sub: "Subject", color: "bg-green-200", icon: "👤" },
-  { text: "AM", sub: "Verb", color: "bg-purple-200", icon: "" },
-  { text: "Boy", sub: "", color: "bg-blue-200", icon: "👦" },
-  { text: "SHE", sub: "Subject", color: "bg-purple-200", icon: "👩" },
-  { text: "IS", sub: "Verb", color: "bg-yellow-200", icon: "" },
-  { text: "Girl", sub: "", color: "bg-green-200", icon: "👧" },
+// Definición del contenido central 4x4 para "Verb To Be"
+const verbToBeInnerGrid = [
+  // Fila Interna 1 (Top Row)
+  { text: "I AM", sub: "", color: "bg-green-200", icon: "" },
+  { text: "", sub: "", color: "bg-purple-200", icon: "👨‍👩‍👧‍👦" },
+  { text: "", sub: "", color: "bg-sky-200", icon: "👦" },
+  { text: "", sub: "", color: "bg-yellow-200", icon: "🍎" },
 
-  // Fila 2
-  { text: "YOU", sub: "Subject", color: "bg-blue-200", icon: "🫵" },
-  { text: "ARE", sub: "Verb", color: "bg-green-200", icon: "" },
-  { text: "Friend", sub: "", color: "bg-yellow-200", icon: "🤝" },
-  { text: "HE", sub: "Subject", color: "bg-green-200", icon: "👱" },
-  { text: "IS", sub: "Verb", color: "bg-blue-200", icon: "" },
-  { text: "Man", sub: "", color: "bg-purple-200", icon: "👨" },
+  // Fila Interna 2
+  { text: "AM", sub: "", color: "bg-purple-200", icon: "👧" },
+  { text: "WE ARE", sub: "", color: "bg-green-200", icon: "" },
+  { text: "SHE IS", sub: "", color: "bg-purple-200", icon: "" },
+  { text: "IT IS", sub: "IT", color: "bg-sky-200", icon: "" },
 
-  // Fila 3
-  { text: "IT", sub: "Subject", color: "bg-yellow-200", icon: "🐶" },
-  { text: "IS", sub: "Verb", color: "bg-blue-200", icon: "" },
-  { text: "Dog", sub: "", color: "bg-purple-200", icon: "🐕" },
-  { text: "WE", sub: "Subject", color: "bg-green-200", icon: "👨👩👧" },
-  { text: "ARE", sub: "Verb", color: "bg-yellow-200", icon: "" },
-  { text: "Happy", sub: "", color: "bg-blue-200", icon: "😄" },
+  // Fila Interna 3
+  { text: "ARE", sub: "", color: "bg-sky-200", icon: "👧" },
+  { text: "HE IS", sub: "", color: "bg-sky-200", icon: "" },
+  { text: "", sub: "", color: "bg-yellow-200", icon: "🐻" },
+  { text: "", sub: "", color: "bg-green-200", icon: "🐶" },
 
-  // Fila 4
-  { text: "THEY", sub: "Subject", color: "bg-purple-200", icon: "👥" },
-  { text: "ARE", sub: "Verb", color: "bg-green-200", icon: "" },
-  { text: "Books", sub: "", color: "bg-blue-200", icon: "📚" },
-  { text: "Apple", sub: "Noun", color: "bg-yellow-200", icon: "🍎" },
-  { text: "Cat", sub: "Noun", color: "bg-purple-200", icon: "😺" },
-  { text: "Car", sub: "Noun", color: "bg-green-200", icon: "🚗" },
-
-  // Fila 5 (Extras para rellenar 6x6)
-  { text: "A", sub: "Art", color: "bg-orange-200", icon: "" },
-  { text: "AM", sub: "?", color: "bg-purple-200", icon: "❓" },
-  { text: "IS", sub: "?", color: "bg-yellow-200", icon: "❓" },
-  { text: "ARE", sub: "?", color: "bg-green-200", icon: "❓" },
-  { text: "Not", sub: "Neg", color: "bg-red-200", icon: "❌" },
-  { text: "AN", sub: "Art", color: "bg-orange-200", icon: "" },
-
-  // Fila 6
-  { text: "My", sub: "Poss", color: "bg-green-200", icon: "🙋" },
-  { text: "Your", sub: "Poss", color: "bg-blue-200", icon: "🫵" },
-  { text: "His", sub: "Poss", color: "bg-purple-200", icon: "👦" },
-  { text: "Her", sub: "Poss", color: "bg-yellow-200", icon: "👧" },
-  { text: "Its", sub: "Poss", color: "bg-green-200", icon: "🐶" },
-  { text: "Our", sub: "Poss", color: "bg-blue-200", icon: "🏠" },
+  // Fila Interna 4 (Bottom Row)
+  { text: "IS", sub: "", color: "bg-yellow-200", icon: "👧" },
+  { text: "", sub: "", color: "bg-purple-200", icon: "👦" },
+  { text: "YOU ARE", sub: "", color: "bg-sky-200", icon: "" },
+  { text: "THEY", sub: "", color: "bg-sky-200", icon: "📚" },
 ];
 
 export const scenarioLabel: Record<ScenarioId, string> = {
@@ -138,24 +114,57 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
   }
 
   if (scenario === "verbtobe") {
-    const cell = verbToBeGrid[i];
+    // Detectar si es una celda del marco perimetral
+    const isFrame = y === 0 || y === 5 || x === 0 || x === 5;
+
+    // --- RENDERIZADO DEL MARCO (Bordes Azules) ---
+    if (isFrame) {
+      let frameText = "";
+      // Título Superior
+      if (y === 0) {
+        if (x === 1) frameText = "VERB";
+        if (x === 2) frameText = "TO";
+        if (x === 3) frameText = "BE";
+      }
+      // Pie Inferior
+      if (y === 5) {
+        if (x === 1) frameText = "AM,";
+        if (x === 2) frameText = "IS";
+        if (x === 3) frameText = "ARE";
+      }
+
+      return {
+        className: "bg-sky-400 text-white font-fredoka font-bold text-sm sm:text-base border-2 border-dashed border-white/30 select-none flex items-center justify-center rounded-md",
+        content: frameText,
+        ariaLabel: frameText || "Frame",
+      };
+    }
+
+    // --- RENDERIZADO DEL CONTENIDO CENTRAL (4x4) ---
+    // Calcular el índice correspondiente en el array de 16 elementos
+    const innerIndex = (y - 1) * 4 + (x - 1);
+    const cell = verbToBeInnerGrid[innerIndex];
+
+    if (!cell) return { className: "bg-transparent" }; // fallback
+
     return {
       className: cn(
         cell.color,
         "flex flex-col items-center justify-center",
-        "border-b-4 border-black/10",
+        "border-b-[3px] border-black/10",
         "shadow-sm transition-all",
         "relative",
+        "p-1"
       ),
       content: (
         <>
-          <div className="absolute -top-1 w-4 h-2 bg-white/20 rounded-full"></div>
-          <span className="text-base sm:text-xl md:text-2xl mb-0 sm:mb-1 filter drop-shadow-sm">{cell.icon}</span>
-          <span className="font-fredoka font-black text-slate-700 text-[8px] sm:text-[10px] md:text-xs uppercase tracking-wide leading-none">
+          <div className="absolute top-1 left-1 w-2 h-1 bg-white/30 rounded-full"></div>
+          <span className="text-xl sm:text-2xl mb-0 sm:mb-1 filter drop-shadow-sm leading-none">{cell.icon}</span>
+          <span className="font-fredoka font-black text-slate-700 text-[10px] sm:text-xs uppercase tracking-wide leading-none text-center">
             {cell.text}
           </span>
           {cell.sub && (
-            <span className="font-fredoka text-[6px] sm:text-[8px] text-slate-500 font-semibold">
+            <span className="font-fredoka text-[8px] sm:text-[9px] text-slate-600 font-bold leading-none mt-0.5 text-center">
               {cell.sub}
             </span>
           )}

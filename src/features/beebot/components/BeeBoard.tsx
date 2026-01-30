@@ -117,7 +117,7 @@ export function BeeBoard(props: {
           </motion.div>
         </div>
 
-        <div className="pointer-events-none absolute bottom-3 left-1/2 z-30 -translate-x-1/2 rounded-full border bg-background/80 px-4 py-1 text-sm font-semibold text-muted-foreground shadow-sm backdrop-blur">
+        <div className="pointer-events-none absolute bottom-0 left-1/2 z-30 -translate-x-1/2 rounded-full border-t border-x bg-background/80 px-4 py-1 text-[10px] uppercase font-bold tracking-widest text-muted-foreground shadow-sm backdrop-blur sm:bottom-3 sm:rounded-full sm:border sm:text-sm sm:normal-case sm:font-semibold sm:tracking-normal">
           {props.status}
         </div>
       </div>
