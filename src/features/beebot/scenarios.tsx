@@ -23,7 +23,7 @@ const verbToBeInnerGrid = [
   { text: "I AM", sub: "", color: "bg-green-200", icon: "" },
   { text: "", sub: "", color: "bg-purple-200", icon: "👨‍👩‍👧‍👦" },
   { text: "", sub: "", color: "bg-sky-200", icon: "👦" },
-  { text: "", sub: "", color: "bg-yellow-200", icon: "🍎" },
+  { text: "AN", sub: "", color: "bg-yellow-200", icon: "🍎" },
 
   // Fila Interna 2
   { text: "AM", sub: "", color: "bg-purple-200", icon: "👧" },
@@ -34,7 +34,7 @@ const verbToBeInnerGrid = [
   // Fila Interna 3
   { text: "ARE", sub: "", color: "bg-sky-200", icon: "👧" },
   { text: "HE IS", sub: "", color: "bg-sky-200", icon: "" },
-  { text: "", sub: "", color: "bg-yellow-200", icon: "🐻" },
+  { text: "A", sub: "", color: "bg-yellow-200", icon: "🐻" },
   { text: "", sub: "", color: "bg-green-200", icon: "🐶" },
 
   // Fila Interna 4 (Bottom Row)
