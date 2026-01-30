@@ -14,14 +14,21 @@ export function BeeBoard(props: {
 }) {
   const reduceMotion = useReducedMotion();
 
-  const cellRadius = props.scenario === "treasure" ? "rounded-none" : "rounded-md";
+  const cellRadius =
+    props.scenario === "treasure"
+      ? "rounded-none"
+      : props.scenario === "verbtobe"
+        ? "rounded-lg"
+        : "rounded-md";
 
   const boardBg =
     props.scenario === "space"
       ? "bg-space-stars"
       : props.scenario === "treasure"
         ? "bg-water-texture"
-        : "bg-card";
+        : props.scenario === "verbtobe"
+          ? "bg-sky-300 border-4 border-sky-400"
+          : "bg-card";
 
   return (
     <section className="flex h-full min-h-0 flex-1 items-center justify-center px-2 py-2 sm:px-4 sm:py-3">
@@ -33,7 +40,12 @@ export function BeeBoard(props: {
         )}
       >
         {/* Grid */}
-        <div className="relative grid h-full w-full grid-cols-6 grid-rows-6 gap-0 p-2">
+        <div
+          className={cn(
+            "relative grid h-full w-full grid-cols-6 grid-rows-6",
+            props.scenario === "verbtobe" ? "gap-1 p-2" : "gap-0 p-2",
+          )}
+        >
           {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, i) => {
             const cell = getCell(props.scenario, i);
             const x = i % GRID_SIZE;
