@@ -17,11 +17,63 @@ const pseudo = (i: number) => {
   return seed - Math.floor(seed);
 };
 
+// Definición del mapa "Verb To Be"
+const verbToBeGrid = [
+  // Fila 1
+  { text: "I", sub: "Subject", color: "bg-green-200", icon: "👤" },
+  { text: "AM", sub: "Verb", color: "bg-purple-200", icon: "" },
+  { text: "Boy", sub: "", color: "bg-blue-200", icon: "👦" },
+  { text: "SHE", sub: "Subject", color: "bg-purple-200", icon: "👩" },
+  { text: "IS", sub: "Verb", color: "bg-yellow-200", icon: "" },
+  { text: "Girl", sub: "", color: "bg-green-200", icon: "👧" },
+
+  // Fila 2
+  { text: "YOU", sub: "Subject", color: "bg-blue-200", icon: "🫵" },
+  { text: "ARE", sub: "Verb", color: "bg-green-200", icon: "" },
+  { text: "Friend", sub: "", color: "bg-yellow-200", icon: "🤝" },
+  { text: "HE", sub: "Subject", color: "bg-green-200", icon: "👱" },
+  { text: "IS", sub: "Verb", color: "bg-blue-200", icon: "" },
+  { text: "Man", sub: "", color: "bg-purple-200", icon: "👨" },
+
+  // Fila 3
+  { text: "IT", sub: "Subject", color: "bg-yellow-200", icon: "🐶" },
+  { text: "IS", sub: "Verb", color: "bg-blue-200", icon: "" },
+  { text: "Dog", sub: "", color: "bg-purple-200", icon: "🐕" },
+  { text: "WE", sub: "Subject", color: "bg-green-200", icon: "👨👩👧" },
+  { text: "ARE", sub: "Verb", color: "bg-yellow-200", icon: "" },
+  { text: "Happy", sub: "", color: "bg-blue-200", icon: "😄" },
+
+  // Fila 4
+  { text: "THEY", sub: "Subject", color: "bg-purple-200", icon: "👥" },
+  { text: "ARE", sub: "Verb", color: "bg-green-200", icon: "" },
+  { text: "Books", sub: "", color: "bg-blue-200", icon: "📚" },
+  { text: "Apple", sub: "Noun", color: "bg-yellow-200", icon: "🍎" },
+  { text: "Cat", sub: "Noun", color: "bg-purple-200", icon: "😺" },
+  { text: "Car", sub: "Noun", color: "bg-green-200", icon: "🚗" },
+
+  // Fila 5 (Extras para rellenar 6x6)
+  { text: "Start", sub: "", color: "bg-white", icon: "🏁" },
+  { text: "AM", sub: "?", color: "bg-purple-200", icon: "❓" },
+  { text: "IS", sub: "?", color: "bg-yellow-200", icon: "❓" },
+  { text: "ARE", sub: "?", color: "bg-green-200", icon: "❓" },
+  { text: "Not", sub: "Neg", color: "bg-red-200", icon: "❌" },
+  { text: "Yes", sub: "Aff", color: "bg-blue-200", icon: "✅" },
+
+  // Fila 6
+  { text: "My", sub: "Poss", color: "bg-green-200", icon: "🙋" },
+  { text: "Your", sub: "Poss", color: "bg-blue-200", icon: "🫵" },
+  { text: "His", sub: "Poss", color: "bg-purple-200", icon: "👦" },
+  { text: "Her", sub: "Poss", color: "bg-yellow-200", icon: "👧" },
+  { text: "Its", sub: "Poss", color: "bg-green-200", icon: "🐶" },
+  { text: "Our", sub: "Poss", color: "bg-blue-200", icon: "🏠" },
+];
+
 export const scenarioLabel: Record<ScenarioId, string> = {
   letters: "Alphabet",
   treasure: "Treasure Island",
   track: "Race Track",
   space: "Space",
+  verbtobe: "Verb To Be",
 };
 
 export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
@@ -82,6 +134,34 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
         <span className="text-2xl">🌴</span>
       ) : undefined,
       ariaLabel: isTreasure ? "Treasure" : isPalm ? "Palm tree" : isSand ? "Sand" : "Water",
+    };
+  }
+
+  if (scenario === "verbtobe") {
+    const cell = verbToBeGrid[i];
+    return {
+      className: cn(
+        cell.color,
+        "flex flex-col items-center justify-center",
+        "border-b-4 border-black/10",
+        "shadow-sm transition-all",
+        "relative",
+      ),
+      content: (
+        <>
+          <div className="absolute -top-1 w-4 h-2 bg-white/20 rounded-full"></div>
+          <span className="text-2xl mb-1 filter drop-shadow-sm">{cell.icon}</span>
+          <span className="font-fredoka font-black text-slate-700 text-[10px] sm:text-xs uppercase tracking-wide leading-none">
+            {cell.text}
+          </span>
+          {cell.sub && (
+            <span className="font-fredoka text-[8px] text-slate-500 font-semibold">
+              {cell.sub}
+            </span>
+          )}
+        </>
+      ),
+      ariaLabel: `${cell.text} ${cell.sub ? `(${cell.sub})` : ""}`,
     };
   }
 

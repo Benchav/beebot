@@ -1,6 +1,6 @@
 export type Direction = 0 | 90 | 180 | 270;
 
-export type ScenarioId = "letters" | "treasure" | "track" | "space";
+export type ScenarioId = "letters" | "treasure" | "track" | "space" | "verbtobe";
 
 export type Command = "left" | "right" | "forward" | "backward" | "pause";
 
