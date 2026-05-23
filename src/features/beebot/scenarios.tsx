@@ -200,8 +200,16 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
   }
 
   if (scenario === "emotions") {
-    const isTitleRow = y === 0;
-    const isEmotionRow = y >= 1 && y <= 3 && x < 5;
+    const isTopSpacer = y === 0;
+    const isTitleRow = y === 1;
+    const isEmotionRow = y >= 2 && y <= 4 && x < 5;
+
+    if (isTopSpacer) {
+      return {
+        className: "bg-[#63d0bb] border-0",
+        ariaLabel: "Background",
+      };
+    }
 
     if (isTitleRow) {
       return {
@@ -222,7 +230,7 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
       };
     }
 
-    const emotion = emotionCards[(y - 1) * 5 + x];
+    const emotion = emotionCards[(y - 2) * 5 + x];
 
     return {
       className: "bg-white border-0 flex items-center justify-center overflow-hidden",
