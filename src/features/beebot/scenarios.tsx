@@ -50,7 +50,32 @@ export const scenarioLabel: Record<ScenarioId, string> = {
   track: "Race Track",
   space: "Space",
   verbtobe: "Verb To Be",
+  emotions: "I am feeling...",
 };
+
+type EmotionCard = {
+  label: string;
+  face: string;
+  color: string;
+};
+
+const emotionCards: EmotionCard[] = [
+  { label: "Happy", face: "😊", color: "#ffd94a" },
+  { label: "Calm", face: "😌", color: "#23b24a" },
+  { label: "Friendly", face: "🙂", color: "#ff6fc0" },
+  { label: "Positive", face: "😄", color: "#a8f04a" },
+  { label: "Confident", face: "😎", color: "#ff1a8f" },
+  { label: "Tired", face: "😴", color: "#7a45b4" },
+  { label: "Worried", face: "😟", color: "#ffb233" },
+  { label: "Confused", face: "😕", color: "#ff9c2d" },
+  { label: "Sad", face: "🙁", color: "#246dff" },
+  { label: "Gloomy", face: "😞", color: "#707070" },
+  { label: "Silly", face: "🤪", color: "#cf7de0" },
+  { label: "Annoyed", face: "😠", color: "#ef5a66" },
+  { label: "Angry", face: "😡", color: "#e31818" },
+  { label: "Unsure", face: "😐", color: "#2eb6e8" },
+  { label: "Muddled", face: "🌀", color: "#7c5cff" },
+];
 
 export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
   const x = i % 6;
@@ -171,6 +196,54 @@ export const getCell = (scenario: ScenarioId, i: number): CellDescriptor => {
         </>
       ),
       ariaLabel: `${cell.text} ${cell.sub ? `(${cell.sub})` : ""}`,
+    };
+  }
+
+  if (scenario === "emotions") {
+    const isTitleRow = y === 0;
+    const isSpacerRow = y === 1;
+    const isEmotionRow = y >= 2 && y <= 4 && x < 5;
+
+    if (isTitleRow) {
+      return {
+        className: "bg-[#63d0bb] text-white border-0 flex items-center justify-center",
+        content: x === 2 ? (
+          <div className="font-fredoka text-center font-medium leading-none tracking-wide">
+            <span className="block text-base sm:text-xl">I am</span>
+            <span className="block text-lg sm:text-2xl">feeling...</span>
+          </div>
+        ) : undefined,
+        ariaLabel: "I am feeling title",
+      };
+    }
+
+    if (isSpacerRow || !isEmotionRow) {
+      return {
+        className: "bg-[#63d0bb] border-0",
+        ariaLabel: "Background",
+      };
+    }
+
+    const emotion = emotionCards[(y - 2) * 5 + x];
+
+    return {
+      className: "bg-white border-0 flex items-center justify-center overflow-hidden",
+      content: emotion ? (
+        <div className="flex h-full w-full flex-col items-center justify-center px-1 py-2 text-center">
+          <div
+            className="relative mb-1 flex h-[72%] w-full items-center justify-center rounded-full"
+            style={{ backgroundColor: emotion.color }}
+          >
+            <div className="absolute inset-[12%] rounded-full border-[6px] border-white/20 opacity-60" />
+            <div className="absolute inset-[20%] rounded-full border-[4px] border-white/20 opacity-70" />
+            <span className="relative text-xl sm:text-2xl drop-shadow-sm">{emotion.face}</span>
+          </div>
+          <span className="font-fredoka text-[9px] sm:text-[11px] font-medium leading-none text-slate-800">
+            {emotion.label}
+          </span>
+        </div>
+      ) : undefined,
+      ariaLabel: emotion?.label ?? "Emotion",
     };
   }
 
